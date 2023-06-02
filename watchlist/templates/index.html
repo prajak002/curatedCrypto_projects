@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--    <meta http-equiv="refresh" content="10">-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Watchlist 📈</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1 class="heading">Your Daily Watchlist 📈</h1>
+
+        <table cellspacing="0" border="0">
+
+                <tr>
+                    <th>Symbol</th>
+                    <th>Coin</th>
+                    <th>Price</th>
+                    <th>24h Change</th>
+                    <th>Market Cap</th>
+                </tr>
+
+
+                {% for coin in coins %}
+                <tr>
+                    <td><img src="{{coin['image']}}" alt="" height=30 width=30></img></td>
+                    <td>{{coin['name']}}</td>
+                    <td>{{"Rs. {:,}".format(coin['current_price']) }}</td>
+                    {% if coin['price_change_percentage_24h'] < 0 %}
+                    <td><font color="red">{{ "%.2f"|format(coin['price_change_percentage_24h']) }}%</td>
+                    {% else %}
+                    <td><font color="green">{{ "%.2f"|format(coin['price_change_percentage_24h']) }}%</td>
+                    {% endif %}
+                    <td>{{"Rs. {:,}".format(coin['market_cap']) }}</td>
+                  </tr>
+            {% endfor %}
+
+
+        </table>
+
+
+</body>
+<style>
+    body{
+    background-color: rgb(28, 28, 28);
+    margin:0px;
+    text-align: center ;
+}
+
+
+@media screen and (min-width: 851px){
+
+.heading{
+    color: white;
+    font-family: 'Montserrat';
+    font-size: 3vw;
+}
+
+table{
+    table-layout: fixed;
+    display: inline-block;
+
+}
+
+td{
+    padding: 20px;
+    font-family: 'Montserrat';
+    color: white;
+    font-size: 1vw;
+    border-bottom: 1px solid rgb(206, 206, 206);
+
+}
+
+
+
+th{
+    padding: 21px;
+    font-family: 'Montserrat';
+    color: white;
+    font-size: 1.2vw;
+    background-color: rgb(123, 123, 123);
+}
+
+
+}
+
+
+
+@media screen and (max-width: 850px){
+    .heading{
+        font-family: 'Montserrat', sans-serif;
+        font-size: 27px;
+        color: white;
+    }
+
+    table{
+    table-layout: fixed;
+    display: inline-block;
+
+}
+
+td{
+    padding: 20px 1vw 20px 1vw;
+    font-family: 'Montserrat';
+    color: white;
+    font-size: 2.8vw;
+    border-bottom: 1px solid rgb(206, 206, 206);
+
+}
+
+
+
+th{
+    padding: 20px 1vw 20px 1vw;
+    font-family: 'Montserrat';
+    color: white;
+    font-size: 3.2vw;
+    background-color: rgb(123, 123, 123);
+}
+
+}
+</style>
+</html>
